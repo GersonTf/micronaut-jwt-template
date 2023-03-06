@@ -1,0 +1,17 @@
+<configuration>
+<!-- Uncomment the next line to see debug logs from Micronaut Security -->
+<!--    <logger name="io.micronaut.security" level="debug"/>-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+
+        <withJansi>false</withJansi>
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%cyan(%d{HH:mm:ss.SSS}) %gray([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

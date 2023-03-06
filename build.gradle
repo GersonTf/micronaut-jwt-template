@@ -1,0 +1,59 @@
+plugins {
+    id("groovy")
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.7.2"
+    id("io.micronaut.test-resources") version "3.7.2"
+}
+
+version = "0.1"
+group = "com.blazinc"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Micronaut openapi // swagger
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    compileOnly("io.micronaut.openapi:micronaut-openapi")
+    implementation("io.swagger.core.v3:swagger-annotations")
+
+    runtimeOnly("ch.qos.logback:logback-classic")
+
+    compileOnly("io.micronaut:micronaut-http-validation")
+    compileOnly("io.micronaut.security:micronaut-security-annotations")
+    compileOnly("io.micronaut.data:micronaut-data-document-processor")
+
+    //we use sprin security for the password encoder
+    implementation 'org.springframework.security:spring-security-core:6.0.2'
+
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("io.micronaut.groovy:micronaut-runtime-groovy")
+    implementation("io.micronaut.reactor:micronaut-reactor")
+    implementation("io.micronaut.reactor:micronaut-reactor-http-client")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut.data:micronaut-data-mongodb")
+    implementation("org.mongodb:mongodb-driver-sync")
+}
+
+
+application {
+    mainClass.set("com.blazinc.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("spock2")
+    processing {
+        incremental(true)
+        annotations("com.blazinc.*")
+    }
+}

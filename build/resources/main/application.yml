@@ -1,0 +1,34 @@
+micronaut:
+  application:
+    name: fireUltimate
+  security:
+    enabled: true
+    authentication: bearer
+    token:
+      jwt:
+        generator:
+#          refresh-token:
+#            secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+          access-token:
+            expiration: 7200
+        signatures:
+          secret:
+            generator:
+              secret: ${FIRE_JWT_SECRET}
+netty:
+  default:
+    allocator:
+      max-order: 3
+# CUSTOM
+mongodb:
+  uri: ${MONGO_URI}
+---
+micronaut:
+  server:
+    cors:
+      enabled: true
+
+      configurations:
+        ui:
+          allowed-origins:
+            - http://localhost:5173  # TODO change this to the actual URL at some point

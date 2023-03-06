@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.blazinc
+testFramework: spock
+sourceLanguage: groovy
+buildTool: gradle
+features: [annotation-api, app-name, data, data-mongodb, gradle, groovy, groovy-application, http-client, jackson-databind, logback, micronaut-build, mongo-gorm, mongo-reactive, netty-server, openapi, readme, shade, spock, test-resources, yaml, security-annotations, security-jwt]
